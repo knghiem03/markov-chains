@@ -46,18 +46,13 @@ def make_chains(text_string):
 
     i=0
     word_list = text_string.split()
-    word_list.append(None)
+    #word_list.append(None)
     while i <= len(word_list)-3:
         bigram = (word_list[i], word_list[i+1])
 
         if bigram in chains.keys():
-            #print(word_list[i+2])
-            #if chains[bigram]:
-            #print("helllo 2222 ")
             chains[bigram].append(word_list[i+2])
         else:
-            #print(word_list[i+2])
-            #print(f"{bigram} --- {word_list[i+2]}")
             chains[bigram] = [word_list[i+2]]
         i += 1
     #for key in chains.keys():
@@ -74,14 +69,15 @@ def make_text(chains):
             random_value = choice(list(chains[first_key]))
             words.append(first_key[0])
             words.append(first_key[1])
+            #print(f"key and random word {first_key} --- {random_value}")
             first_key = ( first_key[1], random_value )
-            print(f"key and random word {first_key} --- {random_value}")
             words.append(random_value)
         else:
             break
 
-    print(f"Words list : {words}")
-    #return ' '.join(words)
+    #print(f"Words list : {words}")
+    #words[-1] = ""
+    return ' '.join(words)
 
 
 input_path = sys.argv[1]
